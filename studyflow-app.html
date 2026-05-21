@@ -923,14 +923,15 @@ const session = _sb ? (await _sb.auth.getSession()).data.session : null;
 if(!session) { window.location.href='index.html'; return; }
 const userEmail = session.user.email;
 localStorage.setItem('sf_pro_email', userEmail);
-isPro = true;
-applyProUI(userEmail);document.documentElement.setAttribute('data-theme','light');
+document.documentElement.setAttribute('data-theme','light');
 const theme = localStorage.getItem('sf_theme');
 if (theme === 'dark') { document.documentElement.removeAttribute('data-theme'); }
 syncThemeToggles();
 loadSettings();
 seedSampleData();
 renderAll();
+isPro = true;
+applyProUI(userEmail);
 initStreaks();
 }
 
