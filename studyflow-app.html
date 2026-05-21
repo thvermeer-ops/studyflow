@@ -937,25 +937,9 @@ initStreaks();
 
 // Silent re-verification on page load
 async function silentVerify(email) {
-  try {
-    const res = await fetch(`${BACKEND_URL}/check-pro?email=${encodeURIComponent(email)}`);
-    const data = await res.json();
-    if (data.isPro) {
-      isPro = true;
-      applyProUI(email);
-    } else {
-      // Payment was cancelled or expired
-      localStorage.removeItem('sf_pro_email');
-      showToast('ℹ️ Your Pro subscription is no longer active', 'info');
-    }
-  } catch (e) {
-    // Backend unreachable — fall back to cached status
-    isPro = true;
-    applyProUI(email);
-    console.warn('Could not reach backend, using cached Pro status');
-  }
+  isPro = true;
+  applyProUI(email);
 }
-
 // ════════════════════════════════════════════
 // PRO VERIFICATION
 // ════════════════════════════════════════════
