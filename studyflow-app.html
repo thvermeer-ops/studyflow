@@ -237,6 +237,7 @@ textarea{resize:vertical;min-height:70px}
   .topbar{padding:0 16px}
   .page{padding:12px}
   .grid-5,.grid-4{grid-template-columns:repeat(2,1fr)!important}
+.stat-card{min-width:0}
   .grid-3{grid-template-columns:1fr 1fr}
   .grid-2{grid-template-columns:1fr}
   .plan-grid{grid-template-columns:1fr}
@@ -482,7 +483,7 @@ textarea{resize:vertical;min-height:70px}
 
   <!-- DASHBOARD -->
   <div class="page active" id="page-dashboard">
-    <div class="grid-4" style="margin-bottom:22px" id="statsGrid">
+    <div class="grid-4" style="margin-bottom:22px;overflow:hidden">
       <div class="stat-card stat-accent"><div class="stat-label">Total Tasks</div><div class="stat-value" id="st-total">0</div><div class="stat-sub">all time</div></div>
       <div class="stat-card stat-green"><div class="stat-label">Completed</div><div class="stat-value" id="st-done">0</div><div class="stat-sub">keep it up!</div></div>
       <div class="stat-card stat-pink"><div class="stat-label">Pending</div><div class="stat-value" id="st-pending">0</div><div class="stat-sub">tasks left</div></div>
