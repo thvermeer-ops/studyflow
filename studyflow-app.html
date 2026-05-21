@@ -937,10 +937,17 @@ initStreaks();
 
 // Silent re-verification on page load
 async function silentVerify(email) {
-  isPro = true;
-  setTimeout(() => applyProUI(email), 100);
-}
-// ════════════════════════════════════════════
+  try {
+    const res = await fetch(`${BACKEND_URL}/check-pro?email=${encodeURIComponent(email)}`);
+    const data = await res.json();
+    if (data.isPro) {
+      isPro = true;
+      setTimeout(() => applyProUI(email), 100);
+    }
+  } catch (e) {
+    console.warn('Backend unreachable');
+  }
+}// ════════════════════════════════════════════
 // PRO VERIFICATION
 // ════════════════════════════════════════════
 async function verifyAndActivatePro() {
