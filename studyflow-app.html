@@ -457,9 +457,9 @@ textarea{resize:vertical;min-height:70px}
 
 <div class="main-content">
   <!-- TOPBAR -->
-  <div class="topbar">
-    <div class="topbar-title" id="topbarTitle">Dashboard</div>
-    <div class="topbar-actions">
+  <div class="topbar" style="justify-content:space-between">
+<img src="logo.png" style="height:36px;object-fit:contain" alt="StudyFlow"/>
+        <div class="topbar-actions">
 <div class="search-wrap">
   <span class="search-icon">🔍</span>
   <input type="text" class="search-input" id="searchInput" placeholder="Search tasks, grades..." oninput="handleSearch(this.value)" onblur="setTimeout(()=>closeSearch(),200)"/>
