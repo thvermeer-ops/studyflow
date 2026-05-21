@@ -938,7 +938,7 @@ initStreaks();
 // Silent re-verification on page load
 async function silentVerify(email) {
   isPro = true;
-  applyProUI(email);
+  setTimeout(() => applyProUI(email), 100);
 }
 // ════════════════════════════════════════════
 // PRO VERIFICATION
@@ -1018,7 +1018,7 @@ function applyProUI(email) {
   document.getElementById('upgradeSettingsRow').style.display = 'none';
   const ao = document.getElementById('analyticsOverlay');
   if (ao) ao.style.display = 'none';
-initStreaks();
+if(typeof initStreaks === 'function') initStreaks();
 }
 
 function resetPro() {
