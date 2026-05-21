@@ -230,7 +230,8 @@ async function signInWithGoogle() {
   const { error } = await _authClient.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: 'https://frolicking-elf-e509ac.netlify.app/studyflow-app.html'
+      redirectTo: 'https://thvermeer-ops.github.io/studyflow/studyflow-app.html',
+scopes: 'email profile'
     }
   });
 
