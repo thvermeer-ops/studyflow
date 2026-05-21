@@ -930,8 +930,7 @@ syncThemeToggles();
 loadSettings();
 seedSampleData();
 renderAll();
-isPro = true;
-applyProUI(userEmail);
+await silentVerify(userEmail);
 initStreaks();
 }
 
