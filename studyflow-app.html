@@ -267,6 +267,14 @@ textarea{resize:vertical;min-height:70px}
 .notif-btn.active{background:rgba(99,102,241,.1);color:var(--accent);border-color:var(--accent)}
 .notif-dot{position:absolute;top:6px;right:6px;width:7px;height:7px;border-radius:50%;background:var(--accent2);border:1px solid var(--surface);display:none}
 .notif-btn.has-notif .notif-dot{display:block}
+.tour-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;pointer-events:none}
+.tour-spotlight{position:fixed;border-radius:8px;box-shadow:0 0 0 9999px rgba(0,0,0,.5);z-index:501;pointer-events:none;transition:all .3s ease}
+.tour-tooltip{position:fixed;background:white;border-radius:8px;padding:20px;max-width:280px;z-index:502;box-shadow:0 8px 30px rgba(0,0,0,.2)}
+.tour-tooltip-title{font-family:'Clash Display',sans-serif;font-size:1rem;font-weight:700;margin-bottom:8px;color:#111}
+.tour-tooltip-text{font-size:.85rem;color:#555;line-height:1.5;margin-bottom:16px}
+.tour-tooltip-footer{display:flex;align-items:center;justify-content:space-between}
+.tour-step{font-size:.75rem;color:#999}
+.tour-buttons{display:flex;gap:8px}
 .daily-quote{font-size:.75rem;color:var(--text-muted);font-style:italic;text-align:center;padding:4px 16px;border-top:1px solid var(--border);background:var(--surface2);}
 .grade-badge {
   display: inline-flex; align-items: center; justify-content: center;
@@ -938,7 +946,19 @@ width:400px;
   </div>
 </div>
 
-<div class="toast-wrap" id="toastWrap"></div>
+<div class="toast-wrap" id="toastWrap"></div><div class="tour-overlay" id="tourOverlay" style="display:none"></div>
+<div class="tour-spotlight" id="tourSpotlight" style="display:none"></div>
+<div class="tour-tooltip" id="tourTooltip" style="display:none">
+  <div class="tour-tooltip-title" id="tourTitle"></div>
+  <div class="tour-tooltip-text" id="tourText"></div>
+  <div class="tour-tooltip-footer">
+    <span class="tour-step" id="tourStep"></span>
+    <div class="tour-buttons">
+      <button class="btn btn-outline btn-sm" onclick="skipTour()">Skip</button>
+      <button class="btn btn-primary btn-sm" id="tourNextBtn" onclick="nextTourStep()">Next →</button>
+    </div>
+  </div>
+</div>
 
 <script>
 // ════════════════════════════════════════════
@@ -1365,6 +1385,56 @@ window.toggleDone = function(id){
 
 renderInbox();
 initGoal
+const TOUR_STEPS = [
+  { title: '👋 Welcome to StudyFlow!', text: 'Let\'s take a quick tour to get you started. It only takes 30 seconds!', target: null },
+  { title: '📚 Add your first task', text: 'Click "+ Add Task" to add your homework. Set a subject, due date and priority!', target: 'openAddModal' },
+  { title: '📊 Track your progress', text: 'Your stats are shown here — total tasks, completed, pending and due today.', target: 'statsRow' },
+  { title: '📅 Calendar view', text: 'The calendar shows dots on days with tasks. Stay on top of your deadlines!', target: null },
+  { title: '🔥 Build your streak', text: 'Complete tasks every day to build a streak. The longer your streak, the more badges you earn!', target: null },
+  { title: '⚡ Try Pro free for 7 days', text: 'You have a 7-day free trial of Pro! Enjoy Focus Timer, AI Tips, Analytics and more.', target: null },
+];
+
+let tourStep = 0;
+
+function startTour() {
+  if (localStorage.getItem('sf_tour_done')) return;
+  tourStep = 0;
+  showTourStep();
+}
+
+function showTourStep() {
+  const step = TOUR_STEPS[tourStep];
+  if (!step) { endTour(); return; }
+  document.getElementById('tourOverlay').style.display = '';
+  document.getElementById('tourTooltip').style.display = '';
+  document.getElementById('tourTitle').textContent = step.title;
+  document.getElementById('tourText').textContent = step.text;
+  document.getElementById('tourStep').textContent = `${tourStep + 1} / ${TOUR_STEPS.length}`;
+  const btn = document.getElementById('tourNextBtn');
+  btn.textContent = tourStep === TOUR_STEPS.length - 1 ? '🎉 Get started!' : 'Next →';
+  const tooltip = document.getElementById('tourTooltip');
+  tooltip.style.top = '50%';
+  tooltip.style.left = '50%';
+  tooltip.style.transform = 'translate(-50%, -50%)';
+}
+
+function nextTourStep() {
+  tourStep++;
+  if (tourStep >= TOUR_STEPS.length) { endTour(); return; }
+  showTourStep();
+}
+
+function skipTour() { endTour(); }
+
+function endTour() {
+  document.getElementById('tourOverlay').style.display = 'none';
+  document.getElementById('tourTooltip').style.display = 'none';
+  document.getElementById('tourSpotlight').style.display = 'none';
+  localStorage.setItem('sf_tour_done', 'true');
+}
+
+// Start tour after app loads
+setTimeout(() => startTour(), 1500);
 </script>
 </body>
 </html>
