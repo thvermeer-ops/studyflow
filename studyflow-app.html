@@ -460,7 +460,7 @@ textarea{resize:vertical;min-height:70px}
 
 <div class="main-content">
   <!-- TOPBAR -->
-  <div class="topbar">
+  <div class="topbar"><div id="clockDisplay" style="font-size:.82rem;color:var(--text-muted);font-family:'Clash Display',sans-serif;white-space:nowrap"></div>
 
   <!-- LOGO -->
   <img src="logo.png"
@@ -501,7 +501,7 @@ width:400px;
   </div>
 
   <!-- DASHBOARD -->
-  <div class="daily-quote" id="dailyQuote"></div><div class="page active" id="page-dashboard">
+  <div class="page active" id="page-dashboard">
     <div class="grid-4" style="margin-bottom:22px;overflow:hidden">
       <div class="stat-card stat-accent"><div class="stat-label">Total Tasks</div><div class="stat-value" id="st-total">0</div><div class="stat-sub">all time</div></div>
       <div class="stat-card stat-green"><div class="stat-label">Completed</div><div class="stat-value" id="st-done">0</div><div class="stat-sub">keep it up!</div></div>
@@ -1219,6 +1219,21 @@ function showDailyQuote(){
   el.textContent = '✨ ' + QUOTES[day % QUOTES.length];
 }
 showDailyQuote();
+function updateClock(){
+  const el = document.getElementById('clockDisplay');
+  if(!el) return;
+  const now = new Date();
+  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const day = days[now.getDay()];
+  const date = now.getDate();
+  const month = months[now.getMonth()];
+  const hours = String(now.getHours()).padStart(2,'0');
+  const mins = String(now.getMinutes()).padStart(2,'0');
+  el.textContent = `${day} ${date} ${month} · ${hours}:${mins}`;
+}
+updateClock();
+setInterval(updateClock, 1000);
 </script>
 </body>
 </html>
