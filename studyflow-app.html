@@ -267,6 +267,7 @@ textarea{resize:vertical;min-height:70px}
 .notif-btn.active{background:rgba(99,102,241,.1);color:var(--accent);border-color:var(--accent)}
 .notif-dot{position:absolute;top:6px;right:6px;width:7px;height:7px;border-radius:50%;background:var(--accent2);border:1px solid var(--surface);display:none}
 .notif-btn.has-notif .notif-dot{display:block}
+.daily-quote{font-size:.75rem;color:var(--text-muted);font-style:italic;text-align:center;padding:4px 16px;border-top:1px solid var(--border);background:var(--surface2);}
 .grade-badge {
   display: inline-flex; align-items: center; justify-content: center;
   width: 44px; height: 44px;
@@ -500,7 +501,7 @@ width:400px;
   </div>
 
   <!-- DASHBOARD -->
-  <div class="page active" id="page-dashboard">
+  <div class="daily-quote" id="dailyQuote"></div><div class="page active" id="page-dashboard">
     <div class="grid-4" style="margin-bottom:22px;overflow:hidden">
       <div class="stat-card stat-accent"><div class="stat-label">Total Tasks</div><div class="stat-value" id="st-total">0</div><div class="stat-sub">all time</div></div>
       <div class="stat-card stat-green"><div class="stat-label">Completed</div><div class="stat-value" id="st-done">0</div><div class="stat-sub">keep it up!</div></div>
@@ -1197,6 +1198,27 @@ function scheduleNotifications(){if(!notificationsEnabled)return;const today=new
 setInterval(scheduleNotifications,30*60*1000);
 function initNotifications(){if(notificationsEnabled&&Notification.permission==='granted'){document.getElementById('notifBtn').classList.add('active');scheduleNotifications();}}
 initNotifications();
+const QUOTES = [
+  "The secret of getting ahead is getting started. — Mark Twain",
+  "It always seems impossible until it's done. — Nelson Mandela",
+  "Don't watch the clock; do what it does. Keep going. — Sam Levenson",
+  "The expert in anything was once a beginner. — Helen Hayes",
+  "Believe you can and you're halfway there. — Theodore Roosevelt",
+  "Success is the sum of small efforts repeated day in and day out.",
+  "You don't have to be great to start, but you have to start to be great.",
+  "Push yourself, because no one else is going to do it for you.",
+  "Great things never come from comfort zones.",
+  "Dream it. Wish it. Do it.",
+  "Study hard, dream big, work harder.",
+  "Every accomplishment starts with the decision to try.",
+];
+function showDailyQuote(){
+  const el = document.getElementById('dailyQuote');
+  if(!el) return;
+  const day = new Date().getDay();
+  el.textContent = '✨ ' + QUOTES[day % QUOTES.length];
+}
+showDailyQuote();
 </script>
 </body>
 </html>
