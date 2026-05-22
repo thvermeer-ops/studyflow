@@ -460,7 +460,7 @@ textarea{resize:vertical;min-height:70px}
 
 <div class="main-content">
   <!-- TOPBAR -->
-  <div class="topbar"><div id="clockDisplay" style="font-size:.82rem;color:var(--text-muted);font-family:'Clash Display',sans-serif;white-space:nowrap"></div>
+  <div class="trial-banner" id="trialBanner"></div><div class="topbar"><div id="clockDisplay" style="font-size:.82rem;color:var(--text-muted);font-family:'Clash Display',sans-serif;white-space:nowrap"></div>
 
   <!-- LOGO -->
   <img src="logo.png"
@@ -922,7 +922,7 @@ const BACKEND_URL = 'https://studyflow-backend1.onrender.com';
 // ════════════════════════════════════════════
 // STATE
 // ════════════════════════════════════════════
-const FREE_LIMIT = 10;
+const FREE_LIMIT = 5;
 let isPro = false;
 let tasks = [];
 let currentTab = 'all', currentFilter = 'all', editingId = null;
@@ -937,7 +937,10 @@ const SUBJECT_COLORS = {Math:'#9d97ff',Science:'#00d9a3',English:'#ff6b9d',Histo
 // ════════════════════════════════════════════
 // INIT
 // ════════════════════════════════════════════
-async function init() {
+async function init() {const trialStart = localStorage.getItem('sf_trial_start');
+if (!trialStart) localStorage.setItem('sf_trial_start', new Date().toISOString());
+const trialDays = Math.floor((Date.now() - new Date(localStorage.getItem('sf_trial_start'))) / 86400000);
+const trialActive = trialDays < 7;
 const _sb = window.supabase ? window.supabase.createClient('https://tnvdybovafzwryrwdfup.supabase.co','sb_publishable_5yIF13i4hDxgGKixbb8JYw_AR2PcuZG') : null;
 const session = _sb ? (await _sb.auth.getSession()).data.session : null;
 if(!session) { window.location.href='index.html'; return; }
@@ -950,7 +953,13 @@ syncThemeToggles();
 loadSettings();
 seedSampleData();
 renderAll();
+updateTrialBanner();
 await silentVerify(userEmail);
+if (!isPro && trialActive) {
+  isPro = true;
+  applyProUI(userEmail);
+  showToast(`🎉 Free trial active — ${6 - trialDays} days left!`);
+}
 initStreaks();
 }
 
@@ -1234,6 +1243,18 @@ function updateClock(){
 }
 updateClock();
 setInterval(updateClock, 1000);
+function updateTrialBanner(){
+  const trialStart = localStorage.getItem('sf_trial_start');
+  if(!trialStart || isPro) return;
+  const trialDays = Math.floor((Date.now() - new Date(trialStart)) / 86400000);
+  const daysLeft = 6 - trialDays;
+  const banner = document.getElementById('trialBanner');
+  if(!banner) return;
+  if(daysLeft >= 0 && daysLeft < 7){
+    banner.style.display = '';
+    banner.innerHTML = `⚡ Free trial — <strong>${daysLeft} day${daysLeft!==1?'s':''} left</strong> · <a href="#" onclick="openModal('upgradeModal');return false" style="color:var(--accent2);font-weight:600">Upgrade to Pro</a>`;
+  }
+}
 </script>
 </body>
 </html>
