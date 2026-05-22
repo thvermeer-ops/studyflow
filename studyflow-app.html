@@ -1070,7 +1070,7 @@ async function fallbackActivate(email, btn, statusEl) {
 function applyProUI(email) {
   ['planBadge','settingsPlanBadge'].forEach(id => {
     const el = document.getElementById(id);
-    if (el) { el.className = 'badge badge-pro'; el.textContent = '⚡ Pro'; }
+    if (el) { el.className = 'badge badge-pro'; el.textContent = '⚡ Pro'; initGoals();}
   });
   document.getElementById('upgradeBtn').style.display = 'none';
   document.getElementById('resetBtn').style.display = '';
