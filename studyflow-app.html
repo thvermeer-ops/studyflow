@@ -1090,7 +1090,7 @@ async function fallbackActivate(email, btn, statusEl) {
 function applyProUI(email) {
   ['planBadge','settingsPlanBadge'].forEach(id => {
     const el = document.getElementById(id);
-    if (el) { el.className = 'badge badge-pro'; el.textContent = '⚡ Pro'; initGoals();}
+    if (el) { el.className = 'badge badge-pro'; el.textContent = '⚡ Pro'; initGoalss();}
   });
   document.getElementById('upgradeBtn').style.display = 'none';
   document.getElementById('resetBtn').style.display = '';
@@ -1362,7 +1362,7 @@ function renderGoals(){
   }).join('');
 }
 
-function initGoals(){
+function initGoalss(){
   if(isPro){
     const go = document.getElementById('goalsOverlay');
     if(go) go.style.display = 'none';
@@ -1384,7 +1384,7 @@ window.toggleDone = function(id){
 };
 
 renderInbox();
-initGoal
+initGoals
 const TOUR_STEPS = [
   { title: '👋 Welcome to StudyFlow!', text: 'Let\'s take a quick tour to get you started. It only takes 30 seconds!', target: null },
   { title: '📚 Add your first task', text: 'Click "+ Add Task" to add your homework. Set a subject, due date and priority!', target: 'openAddModal' },
