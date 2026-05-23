@@ -1498,7 +1498,20 @@ function renderAgenda() {
   const label = document.getElementById('agendaWeekLabel');
   const grid = document.getElementById('agendaGrid');
   if (!label || !grid) return;
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  label.textContent = `${days[0].getDate()} ${months[days[0].getMonth()]} — ${days[6].getDate()} ${months[days[6].getMonth()]} ${days[0].getFullYear()}`;
+  const dayNames = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  grid.innerHTML = days.map((d, i) => {const ds = d.toISOString().slice(0,10);const isToday = d.getTime() === today.getTime();const dayTasks = tasks.filter(t => t.date === ds);return `<div class="agenda-day ${isToday ? 'today' : ''}"><div class="agenda-day-header"><div class="agenda-day-name">${dayNames[i]}</div><div class="agenda-day-num">${d.getDate()}</div></div><div class="agenda-tasks">${dayTasks.length ? dayTasks.map(t => `<div class="agenda-task ${t.priority} ${t.done ? 'done' : ''}" onclick="toggleDone(${t.id})">${esc(t.title)}</div>`).join('') : `<div class="agenda-empty">No tasks</div>`}</div></div>`;}).join('');
+}
+function agendaPrev() { agendaWeekOffset--; renderAgenda(); }
+function agendaNext() { agendaWeekOffset++; renderAgenda(); }
+function initAgenda() {
+  if (isPro) {
+    const ao = document.getElementById('agendaOverlay');
+    if (ao) ao.style.display = 'none';
+    renderAgenda();
+  }
+}
 </script>
 </body>
 </html>
