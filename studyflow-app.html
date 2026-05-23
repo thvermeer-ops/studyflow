@@ -1154,7 +1154,7 @@ function resetPro() {
 // ════════════════════════════════════════════
 // TASKS
 // ════════════════════════════════════════════
-function saveTasks() { localStorage.setItem('sf_tasks', JSON.stringify(tasks)); }
+function saveTasks() { localStorage.setItem('sf_tasks', JSON.stringify(tasks)); renderAgenda(); }
 function seedSampleData() {}
 function renderAll() { renderStats(); renderTasks(); renderCalendar(); renderUpcoming(); renderAnalytics(); updateTimerDisplay(); renderTimerSessions(); }
 function renderStats() {
