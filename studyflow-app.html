@@ -1025,7 +1025,7 @@ const SUBJECT_COLORS = {Math:'#9d97ff',Science:'#00d9a3',English:'#ff6b9d',Histo
 // ════════════════════════════════════════════
 // INIT
 // ════════════════════════════════════════════
-async function init() {const trialStart = localStorage.getItem('sf_trial_start');
+async function init() {tasks = JSON.parse(localStorage.getItem('sf_tasks') || '[]');const trialStart = localStorage.getItem('sf_trial_start');
 if (!trialStart) localStorage.setItem('sf_trial_start', new Date().toISOString());
 const trialDays = Math.floor((Date.now() - new Date(localStorage.getItem('sf_trial_start'))) / 86400000);
 const trialActive = trialDays < 7;
