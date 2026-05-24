@@ -473,7 +473,7 @@ textarea{resize:vertical;min-height:70px}
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
     <span class="nav-tooltip">Grades</span>
   </button>
-  <button class="nav-item" onclick="showPage('agenda')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span class="nav-tooltip">Agenda</span></button><button class="nav-item" onclick="showPage('inbox')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="nav-tooltip">Inbox</span></button><button class="nav-item" onclick="showPage('goals')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg><span class="nav-tooltip">Goals</span></button><button class="nav-item" onclick="showPage('settings')">
+  <button class="nav-item" onclick="showPage('badges')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg><span class="nav-tooltip">Badges</span></button><button class="nav-item" onclick="showPage('agenda')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span class="nav-tooltip">Agenda</span></button><button class="nav-item" onclick="showPage('inbox')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="nav-tooltip">Inbox</span></button><button class="nav-item" onclick="showPage('goals')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg><span class="nav-tooltip">Goals</span></button><button class="nav-item" onclick="showPage('settings')">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
     <span class="nav-tooltip">Settings</span>
   </button>
@@ -750,6 +750,28 @@ width:400px;
       </div>
       <div class="card-body" id="gradesList">
         <div class="empty"><div class="empty-emoji">📝</div><p>No grades yet!</p></div>
+      </div>
+    </div>
+  </div>
+</div><div class="page" id="page-badges">
+  <div style="max-width:900px">
+    <div style="font-family:'Clash Display',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:20px">🏆 Badges & Streaks</div>
+    <div class="card" style="margin-bottom:20px">
+      <div class="card-header"><span class="card-title">🔥 Current Streak</span></div>
+      <div class="card-body" id="badgeStreakInfo">
+        <div style="display:flex;align-items:center;gap:20px">
+          <div style="font-family:'Clash Display',sans-serif;font-size:3rem;font-weight:800;color:var(--gold)" id="badgeStreakCount">0</div>
+          <div>
+            <div style="font-size:.95rem;font-weight:600">days in a row</div>
+            <div style="font-size:.8rem;color:var(--text-muted)" id="badgeStreakBest">Best: 0 days</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><span class="card-title">🏅 Your Badges</span></div>
+      <div class="card-body">
+        <div class="badges-grid" id="badgesPageGrid"></div>
       </div>
     </div>
   </div>
@@ -1234,7 +1256,8 @@ function getSettings(){return JSON.parse(localStorage.getItem('sf_settings')||'{
 function saveSetting(key,val){const s=getSettings();s[key]=val;localStorage.setItem('sf_settings',JSON.stringify(s));showToast('✓ Saved');if(key==='focusDur'){timerTotalSeconds=timerSeconds=+val*60;updateTimerDisplay();}}
 function loadSettings(){const s=getSettings();const fd=document.getElementById('focusDurSetting');if(fd)fd.value=s.focusDur||25;const ab=document.getElementById('autoBreak');if(ab)ab.checked=!!s.autoBreak;timerTotalSeconds=timerSeconds=(s.focusDur||25)*60;}
 function exportData(){const a=document.createElement('a');a.href='data:application/json,'+encodeURIComponent(JSON.stringify({tasks,exportDate:new Date().toISOString()},null,2));a.download='studyflow-export.json';a.click();showToast('📁 Exported!');}
-const pageTitles={dashboard:'Dashboard',analytics:'Analytics',grades:'Grade Tracker',agenda:'Week Agenda',inbox:'Inbox',goals:'Goals',settings:'Settings'};function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');document.querySelectorAll('.nav-item')[['dashboard','analytics','grades','agenda','inbox','goals','settings'].indexOf(id)].classList.add('active');const titleEl=document.getElementById('topbarTitle');if(titleEl)titleEl.textContent=pageTitles[id];if(id==='analytics')renderAnalytics();if(id==='agenda')renderAgenda();}
+const pageTitles={dashboard:'Dashboard',analytics:'Analytics',grades:'Grade Tracker',agenda:'Week Agenda',badges:'Badges & Streaks',inbox:'Inbox',goals:'Goals',settings:'Settings'};Goals',settings:'Settings'};function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');document.querySelectorAll('.nav-item')[['dashboard','analytics','grades','badges','agenda','inbox','goals','settings'].indexOf(id)].classList.add('active');const titleEl=document.getElementById('topbarTitle');if(titleEl)titleEl.textContent=pageTitles[id];if(id==='analytics')renderAnalytics();if(id==='agenda')if(id==='agenda')renderAgenda();
+if(id==='badges')renderBadgesPage();}
 function openModal(id){document.getElementById(id).classList.add('open');}
 function closeModal(id){document.getElementById(id).classList.remove('open');}
 document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open');}));
@@ -1511,6 +1534,39 @@ function initAgenda() {
     if (ao) ao.style.display = 'none';
     renderAgenda();
   }
+}
+function renderBadgesPage(){
+  const data = getStreakData();
+  const sc = document.getElementById('badgeStreakCount');
+  const sb = document.getElementById('badgeStreakBest');
+  if(sc) sc.textContent = data.currentStreak || 0;
+  if(sb) sb.textContent = `Best: ${data.bestStreak || 0} days`;
+  const grid = document.getElementById('badgesPageGrid');
+  if(!grid) return;
+  const unlocked = getUnlockedBadges();
+  const BADGES = [
+    {id:'first_task',emoji:'⭐',name:'First Task',desc:'Complete your first task'},
+    {id:'rising_star',emoji:'🌟',name:'Rising Star',desc:'Complete 10 tasks'},
+    {id:'on_fire',emoji:'🔥',name:'On Fire',desc:'3-day streak'},
+    {id:'streak_3',emoji:'💧',name:'3-Day Streak',desc:'3 days in a row'},
+    {id:'week_warrior',emoji:'⚡',name:'Week Warrior',desc:'7-day streak'},
+    {id:'legend',emoji:'👑',name:'Legend',desc:'30-day streak'},
+    {id:'all_rounder',emoji:'📚',name:'All-Rounder',desc:'Tasks in 5 subjects'},
+    {id:'early_bird',emoji:'🌅',name:'Early Bird',desc:'Complete task before 8am'},
+    {id:'perfect_week',emoji:'🎯',name:'Perfect Week',desc:'Complete all tasks in a week'},
+    {id:'century',emoji:'💯',name:'Century',desc:'Complete 100 tasks'},
+    {id:'speed_demon',emoji:'⚡',name:'Speed Demon',desc:'Complete 5 tasks in one day'},
+    {id:'pro_member',emoji:'💎',name:'Pro Member',desc:'Subscribe to Pro'},
+  ];
+  grid.innerHTML = BADGES.map(b => {
+    const isUnlocked = unlocked.includes(b.id);
+    return `<div class="badge-item ${isUnlocked ? 'unlocked' : 'locked'}" style="display:flex;flex-direction:column;align-items:center;padding:16px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);opacity:${isUnlocked ? '1' : '0.4'}">
+      <div style="font-size:2rem;margin-bottom:8px">${b.emoji}</div>
+      <div style="font-size:.82rem;font-weight:600;text-align:center">${b.name}</div>
+      <div style="font-size:.72rem;color:var(--text-muted);text-align:center;margin-top:4px">${b.desc}</div>
+      ${isUnlocked ? '<div style="font-size:.68rem;color:var(--accent3);margin-top:6px">✅ Unlocked</div>' : ''}
+    </div>`;
+  }).join('');
 }
 </script>
 </body>
