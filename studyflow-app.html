@@ -453,7 +453,13 @@ textarea{resize:vertical;min-height:70px}
 .trial-banner{background:#fff8e1;border-bottom:1px solid #ffd54f;padding:8px 20px;text-align:center;font-size:.82rem;color:#f57f17;display:none}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBB5QZCT3R"></script>
+<script src="https://browser.sentry-cdn.com/7.99.0/bundle.min.js" crossorigin="anonymous"></script>
+<script>
+  Sentry.init({
+    dsn: "https://90cd00a079ebecf1cdcb09801035b15a@o4511447140859904.ingest.de.sentry.io/4511447151870032",
+    tracesSampleRate: 1.0,
+  });
+</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-XBB5QZCT3R"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}

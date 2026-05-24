@@ -144,7 +144,13 @@ body::before {
   margin-top: 24px; line-height: 1.5;
 }
 </style>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBB5QZCT3R"></script>
+<script src="https://browser.sentry-cdn.com/7.99.0/bundle.min.js" crossorigin="anonymous"></script>
+<script>
+  Sentry.init({
+    dsn: "https://90cd00a079ebecf1cdcb09801035b15a@o4511447140859904.ingest.de.sentry.io/4511447151870032",
+    tracesSampleRate: 1.0,
+  });
+</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-XBB5QZCT3R"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
