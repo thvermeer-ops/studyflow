@@ -876,11 +876,11 @@ width:400px;
           <div id="proEmailRow" style="display:none">
             <div class="settings-row">
               <div><div class="settings-label">Pro Email</div><div class="settings-sub" id="proEmailDisplay">—</div></div>
-              <button class="btn btn-danger btn-sm" onclick="resetPro()">Cancel Pro</button>
+              <button class="btn btn-danger btn-sm" onclick="resetPro()"><a href="mailto:studyrise6@gmail.com" style="color:var(--red);font-size:.82rem">Cancel subscription → email us</a></button>
             </div>
           </div>
           <div id="upgradeSettingsRow" style="margin-top:10px">
-            <button class="btn btn-gold" onclick="openModal('upgradeModal')" style="width:100%;justify-content:center">⚡ Upgrade to Pro — $10/month</button>
+            <button class="btn btn-gold" onclick="openModal('upgradeModal')" style="width:100%;justify-content:center">⚡ Upgrade to Pro — €5/month</button>
           </div>
         </div>
       </div>
@@ -1012,7 +1012,7 @@ width:400px;
     <a href="https://buy.stripe.com/test_28E6oB7Z8aLk0ak0HT5EY00" target="_blank"
        class="btn btn-gold btn-lg" style="width:100%;justify-content:center;margin-bottom:8px"
        onclick="showToast('🔗 Opening secure Stripe checkout...')">
-      ⚡ Upgrade Now — $10/month
+      ⚡ Upgrade Now — €5/month
     </a>
     <p style="font-size:.72rem;color:var(--text-dim);text-align:center;margin-bottom:20px">🔒 Secure payment via Stripe · Cancel anytime · Instant access<br><a href="privacy.html" style="color:var(--text-dim)">Privacy</a> · <a href="terms.html" style="color:var(--text-dim)">Terms</a> · <a href="cookies.html" style="color:var(--text-dim)">Cookies</a></p>
     <div style="border-top:1px solid var(--border);padding-top:18px">
@@ -1070,7 +1070,7 @@ const SUBJECT_COLORS = {Math:'#9d97ff',Science:'#00d9a3',English:'#ff6b9d',Histo
 async function init() {const trialStart = localStorage.getItem('sf_trial_start');
 if (!trialStart) localStorage.setItem('sf_trial_start', new Date().toISOString());
 const trialDays = Math.floor((Date.now() - new Date(localStorage.getItem('sf_trial_start'))) / 86400000);
-const trialActive = trialDays < 7;
+const trialActive = false;
 const _sb = window.supabase ? window.supabase.createClient('https://tnvdybovafzwryrwdfup.supabase.co','sb_publishable_5yIF13i4hDxgGKixbb8JYw_AR2PcuZG') : null;
 window._dbClient = _sb;
 const session = _sb ? (await _sb.auth.getSession()).data.session : null;
