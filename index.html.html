@@ -159,6 +159,18 @@ body::before {
 </script>
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="d209796e-0773-4d7e-85cf-b5c433a2dee4";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 </head>
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1e1b4b;color:#fff;padding:16px 24px;z-index:999;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.82rem">
+  <span>🍪 We use cookies to keep you logged in and improve your experience. <a href="cookies.html" style="color:#a5b4fc">Learn more</a></span>
+  <div style="display:flex;gap:8px;flex-shrink:0">
+    <button onclick="acceptCookies()" style="background:#6366f1;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-weight:600;font-size:.82rem">Accept</button>
+    <button onclick="declineCookies()" style="background:transparent;color:#a5b4fc;border:1px solid #4338ca;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:.82rem">Decline</button>
+  </div>
+</div>
+<script>
+function acceptCookies(){localStorage.setItem('sf_cookies','accepted');document.getElementById('cookieBanner').style.display='none';}
+function declineCookies(){localStorage.setItem('sf_cookies','declined');document.getElementById('cookieBanner').style.display='none';}
+if(!localStorage.getItem('sf_cookies')){document.getElementById('cookieBanner').style.display='flex';}
+</script>
 <body>
 <div class="login-card">
   <div class="logo-wrap">
@@ -218,7 +230,10 @@ body::before {
 
   <div class="footer-text">
     By signing in you agree to our terms of service.<br>
-    StudyRise Pro — $10/month · Cancel anytime
+    StudyRise Pro — $10/month · Cancel anytime<br>
+<a href="privacy.html" style="color:var(--text-dim);font-size:.7rem">Privacy</a> · 
+<a href="terms.html" style="color:var(--text-dim);font-size:.7rem">Terms</a> · 
+<a href="cookies.html" style="color:var(--text-dim);font-size:.7rem">Cookies</a>
   </div>
 </div>
 
