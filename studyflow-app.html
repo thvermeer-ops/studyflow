@@ -877,7 +877,7 @@ width:400px;
             <div class="settings-row">
               <div><div class="settings-label">Pro Email</div><div class="settings-sub" id="proEmailDisplay">—</div></div>
              <div style="font-size:.82rem;color:var(--text-muted);margin-top:8px">
-  Cancel anytime · <a href="mailto:studyrise6@gmail.com" style="color:var(--red)">Request refund within 7 days of purchase</a>
+  Cancel anytime · <a href="mailto:studyrise6@gmail.com?subject=Cancel subscription&body=Please cancel my StudyRise Pro subscription. My email: " style="color:var(--text-muted)">Cancel subscription</a> · <a href="mailto:studyrise6@gmail.com?subject=Refund request&body=I would like to request a refund. My email: " style="color:var(--red)">Request refund (7 days)</a> style="color:var(--red)">Request refund within 7 days of purchase</a>
 </div>
             </div>
           </div>
@@ -1109,13 +1109,7 @@ syncThemeToggles();
 loadSettings();
 seedSampleData();
 renderAll();
-updateTrialBanner();
 await silentVerify(userEmail);
-if (!isPro && trialActive) {
-  isPro = true;
-  applyProUI(userEmail);
-  showToast(`🎉 Free trial active — ${6 - trialDays} days left!`);
-}
 initStreaks();
 }
 
