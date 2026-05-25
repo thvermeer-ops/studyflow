@@ -1067,15 +1067,38 @@ const SUBJECT_COLORS = {Math:'#9d97ff',Science:'#00d9a3',English:'#ff6b9d',Histo
 // ════════════════════════════════════════════
 // INIT
 // ════════════════════════════════════════════
-async function init() {tasks = JSON.parse(localStorage.getItem('sf_tasks') || '[]');const trialStart = localStorage.getItem('sf_trial_start');
+async function init() {const trialStart = localStorage.getItem('sf_trial_start');
 if (!trialStart) localStorage.setItem('sf_trial_start', new Date().toISOString());
 const trialDays = Math.floor((Date.now() - new Date(localStorage.getItem('sf_trial_start'))) / 86400000);
 const trialActive = trialDays < 7;
 const _sb = window.supabase ? window.supabase.createClient('https://tnvdybovafzwryrwdfup.supabase.co','sb_publishable_5yIF13i4hDxgGKixbb8JYw_AR2PcuZG') : null;
+window._dbClient = _sb;
 const session = _sb ? (await _sb.auth.getSession()).data.session : null;
 if(!session) { window.location.href='index.html'; return; }
 const userEmail = session.user.email;
 localStorage.setItem('sf_pro_email', userEmail);
+// Laad taken vanuit Supabase
+if(_sb) {
+  const {data: dbTasks} = await _sb.from('tasks').select('*').eq('user-id', userEmail);
+  if(dbTasks && dbTasks.length > 0) {
+    tasks = dbTasks.map(t => ({
+      id: t.id,
+      title: t.title,
+      subject: t.subject,
+      date: t.date,
+      priority: t.priority,
+      done: t.done,
+      notes: t.notes,
+      repeat: t.repeat,
+      created: t.created
+    }));
+    localStorage.setItem('sf_tasks', JSON.stringify(tasks));
+  } else {
+    tasks = JSON.parse(localStorage.getItem('sf_tasks') || '[]');
+  }
+} else {
+  tasks = JSON.parse(localStorage.getItem('sf_tasks') || '[]');
+}
 document.documentElement.setAttribute('data-theme','light');
 const theme = localStorage.getItem('sf_theme');
 if (theme === 'dark') { document.documentElement.removeAttribute('data-theme'); }
@@ -1196,7 +1219,28 @@ function resetPro() {
 // ════════════════════════════════════════════
 // TASKS
 // ════════════════════════════════════════════
-function saveTasks() { localStorage.setItem('sf_tasks', JSON.stringify(tasks)); renderAgenda(); }
+function saveTasks() {
+  localStorage.setItem('sf_tasks', JSON.stringify(tasks));
+  renderAgenda();
+  if(window._dbClient) {
+    const email = localStorage.getItem('sf_pro_email');
+    if(!email) return;
+    window._dbClient.from('tasks').delete().eq('user-id', email).then(() => {
+      const rows = tasks.map(t => ({
+        'user-id': email,
+        title: t.title,
+        subject: t.subject || '',
+        date: t.date || '',
+        priority: t.priority || 'medium',
+        done: t.done || false,
+        notes: t.notes || '',
+        repeat: t.repeat || '',
+        created: t.created || new Date().toISOString()
+      }));
+      if(rows.length > 0) window._dbClient.from('tasks').insert(rows);
+    });
+  }
+}
 function seedSampleData() {}
 function renderAll() { renderStats(); renderTasks(); renderCalendar(); renderUpcoming(); renderAnalytics(); updateTimerDisplay(); renderTimerSessions(); }
 function renderStats() {
