@@ -1075,7 +1075,8 @@ const _sb = window.supabase ? window.supabase.createClient('https://tnvdybovafzw
 window._dbClient = _sb;
 const session = _sb ? (await _sb.auth.getSession()).data.session : null;
 if(!session) { window.location.href='index.html'; return; }
-const userEmail = session.user.email;
+const userEmail = session.user.email;const userName = session.user.user_metadata?.full_name || userEmail.split('@')[0];
+showToast(`👋 Welcome back, ${userName}!`);
 localStorage.setItem('sf_pro_email', userEmail);
 // Laad taken vanuit Supabase
 if(_sb) {
