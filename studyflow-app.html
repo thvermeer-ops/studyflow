@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<script>document.documentElement.setAttribute('data-theme','light');</script><link rel="icon" type="image/x-icon" href="favicon.ico"><title>StudyFlow — Smart Homework Planner</title>
+<script>document.documentElement.setAttribute('data-theme','light');</script><link rel="icon" type="image/x-icon" href="favicon.ico"><title>StudyRise — Smart Homework Planner</title>
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -481,7 +481,7 @@ textarea{resize:vertical;min-height:70px}
 <!-- NAV -->
 <nav class="nav-sidebar">
   <div class="nav-logo" style="width:44px;height:44px;background:none;border-radius:0;padding:2px">
-  <img src="logo.png" style="width:100%;height:100%;object-fit:contain" alt="StudyFlow"/>
+  <img src="logo.png" style="width:100%;height:100%;object-fit:contain" alt="StudyRise"/>
 </div>
   <div class="nav-items">
   <button class="nav-item active" onclick="showPage('dashboard')">
@@ -528,7 +528,7 @@ width:400px;
   top:50%;
   transform:translate(-50%,-50%);
   "
-  alt="StudyFlow"/>
+  alt="StudyRise"/>
 
   <!-- RECHTERKANT -->
   <div class="topbar-actions"
@@ -896,7 +896,7 @@ width:400px;
   <a href="privacy.html" style="color:var(--text-muted);text-decoration:none">Privacy Policy</a> · 
   <a href="terms.html" style="color:var(--text-muted);text-decoration:none">Terms of Service</a> · 
   <a href="cookies.html" style="color:var(--text-muted);text-decoration:none">Cookie Policy</a>
-  <div style="margin-top:8px">© 2026 StudyFlow · <a href="https://tally.so/r/NpRdej" target="_blank" style="color:var(--text-muted);text-decoration:none">Give feedback</a> · <a href="https://ab1ad0b6.sibforms.com/serve/MUIFAJrzpN7WnNry6i4qlwYmodc5pdKv-ORNHU71e0Y_LI_12y4FmiH87hz_cZ9urB4nYUZGUQKPInpzerUmXYixAbCP7HkKbw3FrJldnTYpmX6Ll1ssv0lye7B3IV6nUpsFOYWOSUUTAeSCPsT_INfkX_SY2cQvGErMA_5bRhYRUUKiMpNKiy83gLYZ1oxIvGDYDnWpSSKk0j8bRw==" target="_blank" style="color:var(--text-muted);text-decoration:none">Newsletter</a> target="_blank" style="color:var(--text-muted);text-decoration:none">Give feedback</a></div>
+  <div style="margin-top:8px">© 2026 StudyRise · <a href="https://tally.so/r/NpRdej" target="_blank" style="color:var(--text-muted);text-decoration:none">Give feedback</a> · <a href="https://ab1ad0b6.sibforms.com/serve/MUIFAJrzpN7WnNry6i4qlwYmodc5pdKv-ORNHU71e0Y_LI_12y4FmiH87hz_cZ9urB4nYUZGUQKPInpzerUmXYixAbCP7HkKbw3FrJldnTYpmX6Ll1ssv0lye7B3IV6nUpsFOYWOSUUTAeSCPsT_INfkX_SY2cQvGErMA_5bRhYRUUKiMpNKiy83gLYZ1oxIvGDYDnWpSSKk0j8bRw==" target="_blank" style="color:var(--text-muted);text-decoration:none">Newsletter</a> target="_blank" style="color:var(--text-muted);text-decoration:none">Give feedback</a></div>
 </div><div style="margin-top:16px;text-align:center;font-size:.78rem;color:var(--text-dim)">
   <a href="privacy.html" style="color:var(--text-muted)">Privacy Policy</a> · 
   <a href="terms.html" style="color:var(--text-muted)">Terms of Service</a> · 
@@ -985,7 +985,7 @@ width:400px;
 <div class="modal-overlay" id="upgradeModal">
   <div class="modal" style="max-width:500px">
     <button class="modal-close" onclick="closeModal('upgradeModal')">✕</button>
-    <div class="modal-title">⚡ Upgrade to StudyFlow Pro</div>
+    <div class="modal-title">⚡ Upgrade to StudyRise Pro</div>
     <div class="plan-grid">
       <div class="plan-card">
         <div class="plan-name">Free</div>
@@ -1046,8 +1046,8 @@ width:400px;
 // CONFIGURATION — set your backend URL here
 // ════════════════════════════════════════════
 // After deploying to Render, paste your URL here:
-// e.g. 'https://studyflow-backend.onrender.com'
-const BACKEND_URL = 'https://studyflow-backend1.onrender.com';
+// e.g. 'https://StudyRise-backend.onrender.com'
+const BACKEND_URL = 'https://StudyRise-backend1.onrender.com';
 
 // ════════════════════════════════════════════
 // STATE
@@ -1162,7 +1162,7 @@ async function verifyAndActivatePro() {
       statusEl.innerHTML = '✅ Pro verified! Unlocking features...';
       setTimeout(() => {
         closeModal('upgradeModal');
-        showToast('🎉 Pro activated! Welcome to StudyFlow Pro!');
+        showToast('🎉 Pro activated! Welcome to StudyRise Pro!');
         renderAll();
       }, 1200);
     } else {
@@ -1321,7 +1321,7 @@ function toggleTheme(){const isDark=document.documentElement.getAttribute('data-
 function getSettings(){return JSON.parse(localStorage.getItem('sf_settings')||'{"focusDur":25,"autoBreak":false}');}
 function saveSetting(key,val){const s=getSettings();s[key]=val;localStorage.setItem('sf_settings',JSON.stringify(s));showToast('✓ Saved');if(key==='focusDur'){timerTotalSeconds=timerSeconds=+val*60;updateTimerDisplay();}}
 function loadSettings(){const s=getSettings();const fd=document.getElementById('focusDurSetting');if(fd)fd.value=s.focusDur||25;const ab=document.getElementById('autoBreak');if(ab)ab.checked=!!s.autoBreak;timerTotalSeconds=timerSeconds=(s.focusDur||25)*60;}
-function exportData(){const a=document.createElement('a');a.href='data:application/json,'+encodeURIComponent(JSON.stringify({tasks,exportDate:new Date().toISOString()},null,2));a.download='studyflow-export.json';a.click();showToast('📁 Exported!');}
+function exportData(){const a=document.createElement('a');a.href='data:application/json,'+encodeURIComponent(JSON.stringify({tasks,exportDate:new Date().toISOString()},null,2));a.download='StudyRise-export.json';a.click();showToast('📁 Exported!');}
 const pageTitles={dashboard:'Dashboard',analytics:'Analytics',grades:'Grade Tracker',agenda:'Week Agenda',badges:'Badges & Streaks',inbox:'Inbox',goals:'Goals',settings:'Settings'};function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');document.querySelectorAll('.nav-item')[['dashboard','analytics','grades','badges','agenda','inbox','goals','settings'].indexOf(id)].classList.add('active');const titleEl=document.getElementById('topbarTitle');if(titleEl)titleEl.textContent=pageTitles[id];if(id==='analytics')renderAnalytics();if(id==='agenda')renderAgenda();if(id==='badges')renderBadgesPage();}function openModal(id){document.getElementById(id).classList.add('open');}
 function closeModal(id){document.getElementById(id).classList.remove('open');}
 document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open');}));
@@ -1378,7 +1378,7 @@ function searchResultClick(i){if(window._searchActions&&window._searchActions[i]
 function closeSearch(){document.getElementById('searchResults').classList.remove('open');}
 let notificationsEnabled=localStorage.getItem('sf_notif')==='true';
 function toggleNotifications(){if(!notificationsEnabled){requestNotificationPermission();}else{notificationsEnabled=false;localStorage.setItem('sf_notif','false');document.getElementById('notifBtn').classList.remove('active');showToast('🔕 Notifications turned off');}}
-async function requestNotificationPermission(){if(!('Notification'in window)){showToast('⚠️ Your browser does not support notifications');return;}const permission=await Notification.requestPermission();if(permission==='granted'){notificationsEnabled=true;localStorage.setItem('sf_notif','true');document.getElementById('notifBtn').classList.add('active');showToast('🔔 Notifications enabled!');new Notification('StudyFlow 📚',{body:'Notifications are now enabled! You will be reminded of upcoming deadlines.'});scheduleNotifications();}else{showToast('⚠️ Notification permission denied');}}
+async function requestNotificationPermission(){if(!('Notification'in window)){showToast('⚠️ Your browser does not support notifications');return;}const permission=await Notification.requestPermission();if(permission==='granted'){notificationsEnabled=true;localStorage.setItem('sf_notif','true');document.getElementById('notifBtn').classList.add('active');showToast('🔔 Notifications enabled!');new Notification('StudyRise 📚',{body:'Notifications are now enabled! You will be reminded of upcoming deadlines.'});scheduleNotifications();}else{showToast('⚠️ Notification permission denied');}}
 function scheduleNotifications(){if(!notificationsEnabled)return;const today=new Date().toISOString().slice(0,10);const tomorrow=new Date();tomorrow.setDate(tomorrow.getDate()+1);const tomorrowStr=tomorrow.toISOString().slice(0,10);const dueToday=tasks.filter(t=>t.date===today&&!t.done);const dueTomorrow=tasks.filter(t=>t.date===tomorrowStr&&!t.done);if(dueToday.length>0){setTimeout(()=>{new Notification('📚 Tasks due today!',{body:`You have ${dueToday.length} task${dueToday.length>1?'s':''} due today: ${dueToday.map(t=>t.title).slice(0,2).join(', ')}`});},2000);}if(dueTomorrow.length>0){setTimeout(()=>{new Notification('⏰ Tasks due tomorrow!',{body:`${dueTomorrow.length} task${dueTomorrow.length>1?'s':''} due tomorrow: ${dueTomorrow.map(t=>t.title).slice(0,2).join(', ')}`});},5000);}}
 setInterval(scheduleNotifications,30*60*1000);
 function initNotifications(){if(notificationsEnabled&&Notification.permission==='granted'){document.getElementById('notifBtn').classList.add('active');scheduleNotifications();}}
@@ -1513,7 +1513,7 @@ window.toggleDone = function(id){
 renderInbox();
 initGoals
 const TOUR_STEPS = [
-  { title: '👋 Welcome to StudyFlow!', text: 'Let\'s take a quick tour to get you started. It only takes 30 seconds!', target: null },
+  { title: '👋 Welcome to StudyRise!', text: 'Let\'s take a quick tour to get you started. It only takes 30 seconds!', target: null },
   { title: '📚 Add your first task', text: 'Click "+ Add Task" to add your homework. Set a subject, due date and priority!', target: 'openAddModal' },
   { title: '📊 Track your progress', text: 'Your stats are shown here — total tasks, completed, pending and due today.', target: 'statsRow' },
   { title: '📅 Calendar view', text: 'The calendar shows dots on days with tasks. Stay on top of your deadlines!', target: null },
