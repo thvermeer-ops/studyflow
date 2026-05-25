@@ -501,7 +501,13 @@ textarea{resize:vertical;min-height:70px}
 
 <div class="main-content">
   <!-- TOPBAR -->
-  <div class="trial-banner" id="trialBanner"></div><div class="topbar"><div id="clockDisplay" style="font-size:.82rem;color:var(--text-muted);font-family:'Clash Display',sans-serif;white-space:nowrap"></div>
+  <div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1e1b4b;color:#fff;padding:16px 24px;z-index:999;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.82rem">
+  <span>🍪 We use cookies to keep you logged in and improve your experience. <a href="cookies.html" style="color:#a5b4fc">Learn more</a></span>
+  <div style="display:flex;gap:8px;flex-shrink:0">
+    <button onclick="acceptCookies()" style="background:#6366f1;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-weight:600;font-size:.82rem">Accept</button>
+    <button onclick="declineCookies()" style="background:transparent;color:#a5b4fc;border:1px solid #4338ca;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:.82rem">Decline</button>
+  </div>
+</div><div class="trial-banner" id="trialBanner"></div><div class="topbar"><div id="clockDisplay" style="font-size:.82rem;color:var(--text-muted);font-family:'Clash Display',sans-serif;white-space:nowrap"></div>
 
   <!-- LOGO -->
   <img src="logo.png"
@@ -1633,6 +1639,20 @@ function renderBadgesPage(){
     </div>`;
   }).join('');
 }
+function acceptCookies(){
+  localStorage.setItem('sf_cookies','accepted');
+  document.getElementById('cookieBanner').style.display='none';
+}
+function declineCookies(){
+  localStorage.setItem('sf_cookies','declined');
+  document.getElementById('cookieBanner').style.display='none';
+}
+function checkCookieBanner(){
+  if(!localStorage.getItem('sf_cookies')){
+    document.getElementById('cookieBanner').style.display='flex';
+  }
+}
+checkCookieBanner();
 </script>
 </body>
 </html>
