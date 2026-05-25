@@ -898,7 +898,16 @@ width:400px;
   <a href="privacy.html" style="color:var(--text-muted);text-decoration:none">Privacy Policy</a> · 
   <a href="terms.html" style="color:var(--text-muted);text-decoration:none">Terms of Service</a> · 
   <a href="cookies.html" style="color:var(--text-muted);text-decoration:none">Cookie Policy</a>
-  <div style="margin-top:8px">© 2026 StudyRise · <a href="https://tally.so/r/NpRdej" target="_blank" style="color:var(--text-muted);text-decoration:none">Give feedback</a> · <a href="https://ab1ad0b6.sibforms.com/serve/MUIFAJrzpN7WnNry6i4qlwYmodc5pdKv-ORNHU71e0Y_LI_12y4FmiH87hz_cZ9urB4nYUZGUQKPInpzerUmXYixAbCP7HkKbw3FrJldnTYpmX6Ll1ssv0lye7B3IV6nUpsFOYWOSUUTAeSCPsT_INfkX_SY2cQvGErMA_5bRhYRUUKiMpNKiy83gLYZ1oxIvGDYDnWpSSKk0j8bRw==" target="_blank" style="color:var(--text-muted);text-decoration:none">Newsletter</a> target="_blank" style="color:var(--text-muted);text-decoration:none">Give feedback</a></div>
+  <div style="margin-top:8px"><div style="margin-top:24px">
+  <div style="font-family:'Clash Display',sans-serif;font-size:.95rem;font-weight:600;margin-bottom:12px">📬 Contact</div>
+  <div class="card">
+    <div class="card-body">
+      <div class="input-wrap"><label>Subject</label><input type="text" id="contactSubject" placeholder="e.g. I have a question..."/></div>
+      <div class="input-wrap"><label>Message</label><textarea id="contactMessage" placeholder="Write your message here..." style="min-height:100px"></textarea></div>
+      <button class="btn btn-primary" onclick="sendContact()">Send message</button>
+    </div>
+  </div>
+</div>© 2026 StudyRise · <a href="https://tally.so/r/NpRdej" target="_blank" style="color:var(--text-muted);text-decoration:none">Give feedback</a> · <a href="https://ab1ad0b6.sibforms.com/serve/MUIFAJrzpN7WnNry6i4qlwYmodc5pdKv-ORNHU71e0Y_LI_12y4FmiH87hz_cZ9urB4nYUZGUQKPInpzerUmXYixAbCP7HkKbw3FrJldnTYpmX6Ll1ssv0lye7B3IV6nUpsFOYWOSUUTAeSCPsT_INfkX_SY2cQvGErMA_5bRhYRUUKiMpNKiy83gLYZ1oxIvGDYDnWpSSKk0j8bRw==" target="_blank" style="color:var(--text-muted);text-decoration:none">Newsletter</a> target="_blank" style="color:var(--text-muted);text-decoration:none">Give feedback</a></div>
 </div><div style="margin-top:16px;text-align:center;font-size:.78rem;color:var(--text-dim)">
   <a href="privacy.html" style="color:var(--text-muted)">Privacy Policy</a> · 
   <a href="terms.html" style="color:var(--text-muted)">Terms of Service</a> · 
@@ -1643,6 +1652,14 @@ function checkCookieBanner(){
   }
 }
 checkCookieBanner();
+function sendContact(){
+  const subject = document.getElementById('contactSubject').value.trim();
+  const message = document.getElementById('contactMessage').value.trim();
+  if(!subject || !message){ showToast('⚠️ Please fill in all fields', 'warn'); return; }
+  const email = localStorage.getItem('sf_pro_email') || '';
+  window.location.href = `mailto:studyrise6@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent('From: ' + email + '\n\n' + message)}`;
+  showToast('✅ Opening email client...');
+}
 </script>
 </body>
 </html>
