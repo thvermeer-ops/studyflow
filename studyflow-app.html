@@ -45,7 +45,9 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background:radial-gradi
 .nav-item:hover .nav-tooltip{opacity:1}
 .nav-bottom{margin-top:auto;display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 10px;width:100%}
 .main-content{margin-left:68px;flex:1;display:flex;flex-direction:column;min-height:100vh}
-.topbar{height:64px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 28px;gap:16px;position:sticky;top:0;z-index:40}
+.topbar{
+  height:120px;
+  position:relative;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 28px;gap:16px;position:sticky;top:0;z-index:40}
 .topbar-title{font-family:'Clash Display',sans-serif;font-size:1.1rem;font-weight:600;flex:1}
 .topbar-actions{display:flex;gap:8px;align-items:center}
 .page{padding:28px;display:none}
@@ -875,7 +877,7 @@ width:400px;
             <div class="settings-row">
               <div><div class="settings-label">Pro Email</div><div class="settings-sub" id="proEmailDisplay">—</div></div>
              <div style="font-size:.82rem;color:var(--text-muted);margin-top:8px">
-  Cancel anytime · <a href="mailto:studyrise6@gmail.com?subject=Cancel subscription&body=Please cancel my StudyRise Pro subscription. My email: " style="color:var(--text-muted)">Cancel subscription</a> · <a href="mailto:studyrise6@gmail.com?subject=Refund request&body=I would like to request a refund. My email: " style="color:var(--red)">Request refund (7 days)</a> style="color:var(--red)">Request refund within 7 days of purchase</a>
+  Cancel anytime · <a href="mailto:studyrise6@gmail.com?subject=Cancel subscription&body=Please cancel my StudyRise Pro subscription. My email: " style="color:var(--text-muted)">Cancel subscription</a> · <a href="mailto:studyrise6@gmail.com?subject=Refund request&body=I would like to request a refund. My email: " style="color:var(--red)">Request refund within 7 days of purchase</a>
 </div>
             </div>
           </div>
@@ -905,7 +907,7 @@ width:400px;
       <button class="btn btn-primary" onclick="sendContact()">Send message</button>
     </div>
   </div>
-</div>© 2026 StudyRise · <a href="https://tally.so/r/NpRdej" target="_blank" style="color:var(--text-muted);text-decoration:none">Give feedback</a> · <a href="https://ab1ad0b6.sibforms.com/serve/MUIFAJrzpN7WnNry6i4qlwYmodc5pdKv-ORNHU71e0Y_LI_12y4FmiH87hz_cZ9urB4nYUZGUQKPInpzerUmXYixAbCP7HkKbw3FrJldnTYpmX6Ll1ssv0lye7B3IV6nUpsFOYWOSUUTAeSCPsT_INfkX_SY2cQvGErMA_5bRhYRUUKiMpNKiy83gLYZ1oxIvGDYDnWpSSKk0j8bRw==" target="_blank" style="color:var(--text-muted);text-decoration:none">Newsletter</a> target="_blank" style="color:var(--text-muted);text-decoration:none">Give feedback</a></div>
+</div>© 2026 StudyRise · <a href="https://tally.so/r/NpRdej" target="_blank" style="color:var(--text-muted);text-decoration:none">Give feedback</a> · <a href="https://ab1ad0b6.sibforms.com/serve/MUIFAJrzpN7WnNry6i4qlwYmodc5pdKv-ORNHU71e0Y_LI_12y4FmiH87hz_cZ9urB4nYUZGUQKPInpzerUmXYixAbCP7HkKbw3FrJldnTYpmX6Ll1ssv0lye7B3IV6nUpsFOYWOSUUTAeSCPsT_INfkX_SY2cQvGErMA_5bRhYRUUKiMpNKiy83gLYZ1oxIvGDYDnWpSSKk0j8bRw==" target="_blank" style="color:var(--text-muted);text-decoration:none">Newsletter</a></div>
 </div><div style="margin-top:16px;text-align:center;font-size:.78rem;color:var(--text-dim)">
   <a href="privacy.html" style="color:var(--text-muted)">Privacy Policy</a> · 
   <a href="terms.html" style="color:var(--text-muted)">Terms of Service</a> · 
@@ -1018,7 +1020,7 @@ width:400px;
         </ul>
       </div>
     </div>
-    <a href="https://vermeerist.gumroad.com/l/srygsx" target="_blank"
+    <a href="https://https://vermeerist.gumroad.com/l/srygsx" target="_blank"
        class="btn btn-gold btn-lg" style="width:100%;justify-content:center;margin-bottom:8px"
        onclick="showToast('🔗 Opening secure Stripe checkout...')">
       ⚡ Upgrade Now — €5/month
@@ -1111,7 +1113,7 @@ if(_sb) {
 }
 document.documentElement.setAttribute('data-theme','light');
 const theme = localStorage.getItem('sf_theme');
-if (theme === 'dark') { document.documentElement.setAttribute('data-theme','dark'); }
+if (theme === 'dark') { document.documentElement.removeAttribute('data-theme'); }
 syncThemeToggles();
 loadSettings();
 seedSampleData();
@@ -1515,8 +1517,7 @@ window.toggleDone = function(id){
 };
 
 renderInbox();
-initGoals
-const TOUR_STEPS = [
+initGoals();const TOUR_STEPS = [
   { title: '👋 Welcome to StudyRise!', text: 'Let\'s take a quick tour to get you started. It only takes 30 seconds!', target: null },
   { title: '📚 Add your first task', text: 'Click "+ Add Task" to add your homework. Set a subject, due date and priority!', target: 'openAddModal' },
   { title: '📊 Track your progress', text: 'Your stats are shown here — total tasks, completed, pending and due today.', target: 'statsRow' },
