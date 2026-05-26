@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<script>document.documentElement.setAttribute('data-theme','light');</script><link rel="icon" type="image/x-icon" href="favicon.ico"><title>StudyRise — Smart Homework Planner</title>
+<script>document.documentElement.setAttribute('data-theme','dark');</script><link rel="icon" type="image/x-icon" href="favicon.ico"><title>StudyRise — Smart Homework Planner</title>
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #f8f8f8; --bg2: #f0f0f0; --surface: #ffffff; --surface2: #fafafa;
-  --surface3: #f4f4f4; --surface4: #eeeeee; --border: rgba(0,0,0,.08); --border2: rgba(0,0,0,.12);
-  --accent: #2563eb; --accent-glow: rgba(37,99,235,.2); --accent2: #db2777;
+  --bg: #0a0a0a; --bg2: #111111; --surface: #111111; --surface2: #161616;
+  --surface3: #1c1c1c; --surface4: #222222; --border: rgba(255,255,255,.06); --border2: rgba(255,255,255,.1);
+  --accent: #2563eb; --accent-glow: rgba(37,99,235,.3); --accent2: #db2777;
   --accent3: #059669; --gold: #d97706; --gold2: #b45309; --red: #dc2626;
-  --blue: #2563eb; --text: #111111; --text-muted: #555555; --text-dim: #999999;
+  --blue: #2563eb; --text: #f0f0f0; --text-muted: #888888; --text-dim: #444444;
   --radius: 6px; --radius-sm: 4px; --radius-xs: 3px;
-  --shadow: 0 1px 4px rgba(0,0,0,.08); --shadow-sm: 0 1px 2px rgba(0,0,0,.06);
+  --shadow: 0 4px 24px rgba(0,0,0,.4); --shadow-sm: 0 2px 8px rgba(0,0,0,.3);
   --transition: .15s cubic-bezier(.4,0,.2,1);
 }
 [data-theme="light"] {
@@ -31,7 +31,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background var(--transition),color var(--transition)}
-body::before{content:'';position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 80% 60% at -10% 10%,rgba(108,99,255,.1) 0%,transparent 55%),radial-gradient(ellipse 60% 50% at 110% 90%,rgba(0,217,163,.07) 0%,transparent 55%),radial-gradient(ellipse 50% 40% at 50% 50%,rgba(255,107,157,.05) 0%,transparent 60%);pointer-events:none}
+body::before{content:'';position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse at 20% 20%,rgba(37,99,235,.08) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(99,102,241,.06) 0%,transparent 50%);pointer-events:none}
 [data-theme="light"] body::before{opacity:.4}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--surface4);border-radius:4px}
 .app-shell{display:flex;min-height:100vh;position:relative;z-index:1}
@@ -1111,7 +1111,7 @@ if(_sb) {
 } else {
   tasks = JSON.parse(localStorage.getItem('sf_tasks') || '[]');
 }
-document.documentElement.setAttribute('data-theme','light');
+document.documentElement.setAttribute('data-theme','dark');
 const theme = localStorage.getItem('sf_theme');
 if (theme === 'dark') { document.documentElement.removeAttribute('data-theme'); }
 syncThemeToggles();
@@ -1323,7 +1323,7 @@ function updateTimerDisplay(){const m=Math.floor(timerSeconds/60),s=timerSeconds
 function renderTimerSessions(){document.getElementById('timerSessions').innerHTML=Array.from({length:MAX_SESSIONS},(_,i)=>`<div class="session-dot ${i<timerSessions?'done':''}"></div>`).join('');}
 async function loadAITips(){if(!isPro){openModal('upgradeModal');return;}const body=document.getElementById('aiBody');body.innerHTML=`<div class="ai-loading"><div class="ai-dot"></div><div class="ai-dot"></div><div class="ai-dot"></div><span>Generating tips...</span></div>`;const pending=tasks.filter(t=>!t.done).slice(0,8);const prompt=`You are a friendly study coach. Here are the student's pending homework tasks:\n${pending.map(t=>`- ${t.title} (${t.subject}, due ${t.date||'no date'}, priority: ${t.priority})`).join('\n')}\n\nGive 3 short, practical, personalized study tips. Format as JSON only:\n{"tips":[{"emoji":"...","title":"...","body":"..."},{"emoji":"...","title":"...","body":"..."},{"emoji":"...","title":"...","body":"..."}]}\nOnly JSON, no other text.`;try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})});const data=await res.json();const txt=data.content.map(c=>c.text||'').join('');const parsed=JSON.parse(txt.replace(/```json|```/g,'').trim());body.innerHTML=parsed.tips.map(tip=>`<div class="ai-card"><div class="ai-card-title">${tip.emoji} ${esc(tip.title)}</div><div class="ai-card-body">${esc(tip.body)}</div></div>`).join('');}catch(e){body.innerHTML=`<div class="ai-card"><div class="ai-card-title">📖 Start with urgent tasks</div><div class="ai-card-body">Tackle your most urgent assignments first while your focus is sharpest.</div></div><div class="ai-card"><div class="ai-card-title">⏱ Use time blocks</div><div class="ai-card-body">Study in 25-minute blocks with short breaks to stay productive.</div></div><div class="ai-card"><div class="ai-card-title">🔄 Review before sleeping</div><div class="ai-card-body">A quick 10-minute review before bed helps consolidate what you learned.</div></div>`;}}
 function renderAnalytics(){if(!isPro)return;const total=tasks.length,done=tasks.filter(t=>t.done).length;document.getElementById('an-rate').textContent=total?Math.round(done/total*100)+'%':'—';document.getElementById('an-avg').textContent=done;const uniqS=new Set(tasks.map(t=>t.subject));document.getElementById('an-streak').textContent=uniqS.size||'—';const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];const today=new Date();today.setHours(0,0,0,0);const wd=days.map((_,i)=>{const d=new Date(today);d.setDate(today.getDate()-(today.getDay()||7)+1+i);const ds=d.toISOString().slice(0,10);return{label:days[i],count:tasks.filter(t=>t.date===ds).length};});const maxW=Math.max(...wd.map(d=>d.count),1);document.getElementById('weekChart').innerHTML=wd.map(d=>`<div class="chart-bar-col"><div class="chart-bar" style="height:${Math.max(d.count/maxW*100,d.count>0?10:2)}px">${d.count>0?`<div class="bar-tooltip">${d.count} task${d.count>1?'s':''}</div>`:''}</div><span class="chart-label">${d.label}</span></div>`).join('');const subjs=['Math','Science','English','History','Art','PE','Other'];const counts=subjs.map(s=>({s,n:tasks.filter(t=>t.subject===s).length})).filter(x=>x.n>0).sort((a,b)=>b.n-a.n);const maxS=Math.max(...counts.map(c=>c.n),1);document.getElementById('subjectChart').innerHTML=counts.map(c=>`<div class="subject-row"><span class="subject-name">${c.s}</span><div class="subject-bar-wrap"><div class="subject-bar" style="width:${c.n/maxS*100}%;background:${SUBJECT_COLORS[c.s]||'#888'}"></div></div><span class="subject-count">${c.n}</span></div>`).join('')||'<div style="color:var(--text-dim);font-size:.82rem">No data yet</div>';const hd={};tasks.forEach(t=>{if(t.date)hd[t.date]=(hd[t.date]||0)+1;});let hh='';for(let i=27;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const ds=d.toISOString().slice(0,10);hh+=`<div class="heat-cell" data-count="${Math.min(hd[ds]||0,4)}" title="${ds}: ${hd[ds]||0} tasks"></div>`;}document.getElementById('heatmap').innerHTML=hh;}
-function toggleTheme(){const isDark=document.documentElement.getAttribute('data-theme')==='dark';if(isDark){document.documentElement.setAttribute('data-theme','light');localStorage.setItem('sf_theme','light');}else{document.documentElement.setAttribute('data-theme','dark');localStorage.setItem('sf_theme','dark');}syncThemeToggles();}function syncThemeToggles(){const l=document.documentElement.getAttribute('data-theme')==='light';['themeToggle','themeToggle2'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.toggle('light',l);});}
+function toggleTheme(){const isDark=document.documentElement.getAttribute('data-theme')==='dark';if(isDark){document.documentElement.setAttribute('data-theme','dark');localStorage.setItem('sf_theme','light');}else{document.documentElement.setAttribute('data-theme','dark');localStorage.setItem('sf_theme','dark');}syncThemeToggles();}function syncThemeToggles(){const l=document.documentElement.getAttribute('data-theme')==='light';['themeToggle','themeToggle2'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.toggle('light',l);});}
 function getSettings(){return JSON.parse(localStorage.getItem('sf_settings')||'{"focusDur":25,"autoBreak":false}');}
 function saveSetting(key,val){const s=getSettings();s[key]=val;localStorage.setItem('sf_settings',JSON.stringify(s));showToast('✓ Saved');if(key==='focusDur'){timerTotalSeconds=timerSeconds=+val*60;updateTimerDisplay();}}
 function loadSettings(){const s=getSettings();const fd=document.getElementById('focusDurSetting');if(fd)fd.value=s.focusDur||25;const ab=document.getElementById('autoBreak');if(ab)ab.checked=!!s.autoBreak;timerTotalSeconds=timerSeconds=(s.focusDur||25)*60;}
