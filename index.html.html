@@ -525,7 +525,8 @@ else { showError('✅ Account created! You can now sign in.'); }<!doctype html>
         const { error } = await _authClient.auth.signInWithOAuth({
           provider: "google",
           options: {
-            redirectTo: "https://studyrise.nl/studyflow-app.html",
+            redirectTo:
+              "https://thvermeer-ops.github.io/studyrise-v2/app-v2.html",
             scopes: "email profile",
           },
         });
